@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-body">
+    <ng-container *ngIf='convertResult === null then noAvailableConversion else conversionDetails'>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noAvailableConversion>
+  <div>There is no conversion for {{conversionInput.fromCurrency}} -> {{conversionInput.toCurrency}}</div>
+</ng-template>
+<ng-template #conversionDetails>
+  <div>
+    {{conversionInput.fromAmount| number: '1.2-4'}} {{conversionInput.fromCurrency}}
+    -> {{convertResult?.amount| number: '1.2-4'}} {{conversionInput.toCurrency}}
+  </div>
+  <div>
+    Rate: {{convertResult?.rate}}
+  </div>
+  <div>
+    Selected date is {{conversionInput.conversionDate | date: systemDateFormat}}.
+  </div>
+  <ng-container *ngIf='conversionInput.conversionDate !== convertResult.conversionDate then lastFridayIsUsed'>
+  </ng-container>
+</ng-template>
+<ng-template #lastFridayIsUsed>
+  <div>As the selected date is outside of the bank working hours, the last
+    Friday({{convertResult.conversionDate | date:systemDateFormat}})
+    is used for conversion.
+  </div>
+</ng-template>
