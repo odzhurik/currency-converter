@@ -35,7 +35,7 @@ export class ExchangeRateComponent implements OnInit {
         this.conversionInput = this.formGroup.value as ConversionInput;
         this._exchangeRateService.convert(this.conversionInput)
             .pipe(finalize(() => this.isConversionFinished = true))
-            .subscribe(convertResult => this.conversionResult = convertResult);
+            .subscribe(convertResult => this.conversionResult = convertResult, error => console.log(error));
     }
 
     public get conversionDateControl(): FormControl {

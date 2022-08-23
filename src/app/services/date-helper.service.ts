@@ -3,12 +3,13 @@ import {ISO_DATE_FORMAT} from "../models/date-consts";
 
 export class DateHelperService {
     public getFormattedDate(date: Date): string {
-        let date1 = date;
+        let workingDay = date;
+        
         if (isWeekend(date)) {
-            date1 = this.getClosestFriday(date);
+            workingDay = this.getClosestFriday(date);
         }
 
-        return format(date1, ISO_DATE_FORMAT);
+        return format(workingDay, ISO_DATE_FORMAT);
     }
 
     public parseIso(isoDate: string): Date {
@@ -17,6 +18,7 @@ export class DateHelperService {
 
     private getClosestFriday(date: Date): Date {
         let daysToAdd = 0;
+
         if (isSaturday(date)) {
             daysToAdd = -1;
         } else if (isSunday(date)) {
