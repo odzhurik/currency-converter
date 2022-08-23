@@ -10,7 +10,7 @@ interface SeriesObservation {
     [key: string]: SeriesValue;
 }
 
-type Observation = SeriesObservation & {
+export type Observation = SeriesObservation & {
     d: string;
 }
 
