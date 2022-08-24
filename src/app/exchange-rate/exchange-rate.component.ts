@@ -35,6 +35,7 @@ export class ExchangeRateComponent implements OnInit {
         this.conversionInput = this.formGroup.value as ConversionInput;
         this._exchangeRateService.convert(this.conversionInput)
             .pipe(finalize(() => this.isConversionFinished = true))
+            //I added only logging of errors in order not to make the app more complicated 
             .subscribe(convertResult => this.conversionResult = convertResult, error => console.log(error));
     }
 
