@@ -19,7 +19,7 @@
   <div>
     Selected date is {{conversionInput.conversionDate | date: systemDateFormat}}.
   </div>
-  <ng-container *ngIf='conversionInput.conversionDate !== convertResult.conversionDate then lastFridayIsUsed'>
+  <ng-container *ngIf='conversionInput.conversionDate.getTime() !== convertResult.conversionDate.getTime() then lastFridayIsUsed'>
   </ng-container>
 </ng-template>
 <ng-template #lastFridayIsUsed>
